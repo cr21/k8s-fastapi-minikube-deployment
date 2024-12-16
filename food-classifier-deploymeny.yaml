@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: food-classifier-deployment
+    labels:
+        app: food-classifier
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: food-classifier
+    template:
+        metadata:
+            labels:
+                app: food-classifier
+        spec:
+            containers:
+                - name: food-classifier
+                  image: food-classifier-k8s:latest
+                  imagePullPolicy: Never
+                  ports:
+                      - containerPort: 7860
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: food-classifier-service
+spec:
+    selector:
+        app: food-classifier
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 7860
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: food-classifier-ingress
+    annotations:
+        nginx.ingress.kubernetes.io/affinity: "cookie"
+        nginx.ingress.kubernetes.io/affinity-mode: "balanced"
+        nginx.ingress.kubernetes.io/session-cookie-name: "INGRESSCOOKIE"
+        nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+        nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+spec:
+    rules:
+        - host: food.classifier.localhost
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: food-classifier-service
+                            port:
+                                number: 80

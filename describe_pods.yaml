@@ -1,0 +1,96 @@
+# kubectl describe pods food-classifier
+Name:             food-classifier-deployment-5c7b447778-78qkh
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Sun, 15 Dec 2024 20:04:33 -0600
+Labels:           app=food-classifier
+                  pod-template-hash=5c7b447778
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.3
+IPs:
+  IP:           10.244.0.3
+Controlled By:  ReplicaSet/food-classifier-deployment-5c7b447778
+Containers:
+  food-classifier:
+    Container ID:   docker://79aff7a8175da741b6e5bfc2fd92c731ca3caeffa45f7ef1d28d93b69be4b67c
+    Image:          food-classifier-k8s:latest
+    Image ID:       docker://sha256:7433f61b665eec8cbabd7758c3917fd3fa14f5f14b53afb069a4a2aaed184642
+    Port:           7860/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 15 Dec 2024 20:04:34 -0600
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-4q6cw (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-4q6cw:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+
+Name:             food-classifier-deployment-5c7b447778-9qzml
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Sun, 15 Dec 2024 20:04:33 -0600
+Labels:           app=food-classifier
+                  pod-template-hash=5c7b447778
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.4
+IPs:
+  IP:           10.244.0.4
+Controlled By:  ReplicaSet/food-classifier-deployment-5c7b447778
+Containers:
+  food-classifier:
+    Container ID:   docker://a9cbb8fb6d75044a3e1fcd905d14fa97688138e32d26ed0a3e75108e39598f14
+    Image:          food-classifier-k8s:latest
+    Image ID:       docker://sha256:7433f61b665eec8cbabd7758c3917fd3fa14f5f14b53afb069a4a2aaed184642
+    Port:           7860/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 15 Dec 2024 20:04:34 -0600
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-dfm9w (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-dfm9w:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

@@ -8,3 +8,13 @@ kubectl get pods
 kubectl logs <pod_container_id> --follow
 minikube service food-classifier-service
 
+minikube addons enable ingress
+minikube addons enable dashboard
+minikube addons enable metrics-server
+minikube tunnel
+minikube dashbord
+kubectl describe deployment.apps/food-classifier-deployment
+kubectl describe pods food-classifier
+kubectl describe ingress food-classifier
+kubectl top pod
+kubectl top node

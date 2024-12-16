@@ -1,0 +1,18 @@
+#kubectl describe ingress food-classifier
+Name:             food-classifier-ingress
+Labels:           <none>
+Namespace:        default
+Address:          192.168.49.2
+Ingress Class:    <none>
+Default backend:  <default>
+Rules:
+  Host                       Path  Backends
+  ----                       ----  --------
+  food.classifier.localhost
+                             /   food-classifier-service:80 (10.244.0.4:7860,10.244.0.3:7860)
+Annotations:                 nginx.ingress.kubernetes.io/affinity: cookie
+                             nginx.ingress.kubernetes.io/affinity-mode: balanced
+                             nginx.ingress.kubernetes.io/session-cookie-expires: 172800
+                             nginx.ingress.kubernetes.io/session-cookie-max-age: 172800
+                             nginx.ingress.kubernetes.io/session-cookie-name: INGRESSCOOKIE
+Events:                      <none>
