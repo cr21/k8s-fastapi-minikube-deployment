@@ -1,0 +1,10 @@
+minikube start --driver=docker
+alias kubectl="minikube kubectl --"
+eval $(minikube docker-env)
+docker build -t food-classifier-k8s .
+kubectl apply -f food-classifier-deploymeny.yaml ( kubectl apply -f . )
+
+kubectl get pods
+kubectl logs <pod_container_id> --follow
+minikube service food-classifier-service
+

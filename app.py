@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse, HTMLResponse
 from fasthtml import FastHTML
+import socket
 from fasthtml.common import (
     Html,
     Script,
@@ -40,9 +41,12 @@ from shad4fast import (
 )
 import base64
 
+# Get hostname
+hostname = socket.gethostname()
+print(f"hostname {hostname}")
 # Create main FastAPI app
 app = FastAPI(
-    title="Food Image Classification API",
+    title=f"Food Image Classification API at {hostname}",
     description="FastAPI application serving an ONNX model for Food image classification",
     version="1.0.0",
 )
@@ -128,7 +132,7 @@ async def ui_home():
                 Card(
                     CardHeader(
                         Div(
-                            CardTitle("Food Image Classifier 🍽️"),
+                            CardTitle(f"Food Image Classifier 🍽️ {hostname}"),
                             Badge("AI Powered", variant="secondary", cls="w-fit"),
                             cls="flex items-center justify-between",
                         ),
@@ -255,7 +259,7 @@ async def ui_handle_classify(file: Annotated[bytes, File()]):
 
         # Sort predictions by confidence
         sorted_predictions = sorted(response.predictions.items(), key=lambda x: x[1], reverse=True)[:5]
-
+        print(f"sorted_predictions {sorted_predictions}")
         # Generate HTML for predictions
         prediction_html = Div(
             Div(
@@ -310,7 +314,6 @@ async def predict(file: Annotated[bytes, File(description="Image file to classif
         probabilities = np.exp(logits) / np.sum(np.exp(logits))
 
         predictions = {LABELS[i]: float(prob) for i, prob in enumerate(probabilities)}
-
         return PredictionResponse(
             predictions=predictions, success=True, message="Classification successful"
         )
